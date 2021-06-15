@@ -1,0 +1,1653 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Api Documentation",
+    "version": "1.0",
+    "title": "Api Documentation",
+    "termsOfService": "urn:tos",
+    "contact": {},
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0"
+    }
+  },
+  "host": "localhost:8080",
+  "basePath": "/myapp",
+  "tags": [
+    {
+      "name": "course-controller",
+      "description": "Course Controller"
+    },
+    {
+      "name": "university-controller",
+      "description": "University Controller"
+    },
+    {
+      "name": "user-controller",
+      "description": "User Controller"
+    },
+    {
+      "name": "student-controller",
+      "description": "Student Controller"
+    },
+    {
+      "name": "department-controller",
+      "description": "Department Controller"
+    },
+    {
+      "name": "instructor-controller",
+      "description": "Instructor Controller"
+    }
+  ],
+  "paths": {
+    "/api/v1/course/change-details": {
+      "put": {
+        "tags": [
+          "course-controller"
+        ],
+        "summary": "updateDetails",
+        "description": "This API is used to update existing course",
+        "operationId": "updateDetailsUsingPUT",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "courseDTO",
+            "description": "courseDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CourseDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/course/de-register/{courseId}": {
+      "delete": {
+        "tags": [
+          "course-controller"
+        ],
+        "summary": "deleteDetails",
+        "description": "This API is used to delete course",
+        "operationId": "deleteDetailsUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "courseId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/course/details/all": {
+      "get": {
+        "tags": [
+          "course-controller"
+        ],
+        "summary": "getAllCourseDetail",
+        "description": "This API is used fetch all courses list",
+        "operationId": "getAllCourseDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/CourseResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/course/details/{courseId}": {
+      "get": {
+        "tags": [
+          "course-controller"
+        ],
+        "summary": "getCourseDetail",
+        "description": "This API is used to fetch course data based on Id",
+        "operationId": "getCourseDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "description": "courseId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/CourseResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/course/register": {
+      "post": {
+        "tags": [
+          "course-controller"
+        ],
+        "summary": "addCourse",
+        "description": "This API is used to create new course",
+        "operationId": "addCourseUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "courseDTO",
+            "description": "courseDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CourseDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/department/change-details": {
+      "put": {
+        "tags": [
+          "department-controller"
+        ],
+        "summary": "updateDetails",
+        "description": "This API is used to update existing department",
+        "operationId": "updateDetailsUsingPUT_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "departmentDTO",
+            "description": "departmentDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DepartmentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/department/de-register/{departmentName}": {
+      "delete": {
+        "tags": [
+          "department-controller"
+        ],
+        "summary": "deleteDetails",
+        "description": "This API is used to delete existing department ",
+        "operationId": "deleteDetailsUsingDELETE_1",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "departmentName",
+            "in": "path",
+            "description": "departmentName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/department/details/all": {
+      "get": {
+        "tags": [
+          "department-controller"
+        ],
+        "summary": "getAllDepartment",
+        "description": "This API is used fetch all department details",
+        "operationId": "getAllDepartmentUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/DepartmentResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/department/details/{departmentName}": {
+      "get": {
+        "tags": [
+          "department-controller"
+        ],
+        "summary": "getDepartmentDetail",
+        "description": "This API is used fetch department detail",
+        "operationId": "getDepartmentDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "departmentName",
+            "in": "path",
+            "description": "departmentName",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DepartmentResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/department/register": {
+      "post": {
+        "tags": [
+          "department-controller"
+        ],
+        "summary": "addDepartment",
+        "description": "This API is used to create new department",
+        "operationId": "addDepartmentUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "departmentDTO",
+            "description": "departmentDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/DepartmentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/instructor/change-details": {
+      "put": {
+        "tags": [
+          "instructor-controller"
+        ],
+        "summary": "updateDetails",
+        "description": "This API is used update existing instructor detail",
+        "operationId": "updateDetailsUsingPUT_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "instructorDTO",
+            "description": "instructorDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstructorDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/instructor/de-register/{instructorId}": {
+      "delete": {
+        "tags": [
+          "instructor-controller"
+        ],
+        "summary": "deleteDetails",
+        "description": "This API is used to delete existing instructor",
+        "operationId": "deleteDetailsUsingDELETE_2",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instructorId",
+            "in": "path",
+            "description": "instructorId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/instructor/details/all": {
+      "get": {
+        "tags": [
+          "instructor-controller"
+        ],
+        "summary": "getAllInstructorDetail",
+        "description": "This API is used to fetch all instructor details",
+        "operationId": "getAllInstructorDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/InstructorResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/instructor/details/{instructorId}": {
+      "get": {
+        "tags": [
+          "instructor-controller"
+        ],
+        "summary": "getInstructorDetail",
+        "description": "This API is used to fetch instructor detail",
+        "operationId": "getInstructorDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instructorId",
+            "in": "path",
+            "description": "instructorId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/InstructorResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/instructor/register": {
+      "post": {
+        "tags": [
+          "instructor-controller"
+        ],
+        "summary": "addInstructor",
+        "description": "This API is used to create instructor detail",
+        "operationId": "addInstructorUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "instructorDTO",
+            "description": "instructorDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/InstructorDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/change-details": {
+      "put": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "updateDetails",
+        "description": "This API is used to update existing student data",
+        "operationId": "updateDetailsUsingPUT_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentDTO",
+            "description": "studentDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/de-enroll/course": {
+      "delete": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "deEnrollCourse",
+        "description": "This API is used to de-enroll student from existing course",
+        "operationId": "deEnrollCourseUsingDELETE",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentCourse",
+            "description": "studentCourse",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentCourse"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/de-register/{studentId}": {
+      "delete": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "deleteDetails",
+        "description": "This API is used to delete student record",
+        "operationId": "deleteDetailsUsingDELETE_3",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "description": "studentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/details/all": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "getAllStudentDetail",
+        "description": "This API is used to fetch all student detail",
+        "operationId": "getAllStudentDetailUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StudentResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/details/{studentId}": {
+      "get": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "getStudentDetailById",
+        "description": "This API is used fetch student detail",
+        "operationId": "getStudentDetailByIdUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "description": "studentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/StudentResponse"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/enroll/course": {
+      "post": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "enrollCourse",
+        "description": "This API is used to en roll student in given course",
+        "operationId": "enrollCourseUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentCourse",
+            "description": "studentCourse",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentCourse"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/student/register": {
+      "post": {
+        "tags": [
+          "student-controller"
+        ],
+        "summary": "addStudent",
+        "description": "This API is used to create new student in system",
+        "operationId": "addStudentUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "studentDTO",
+            "description": "studentDTO",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/StudentDTO"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Message"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/university-detail/course-duration/{studentId}": {
+      "get": {
+        "tags": [
+          "university-controller"
+        ],
+        "summary": "getDuration",
+        "description": "This API is used to fetch total course duration for student ",
+        "operationId": "getDurationUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "description": "studentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/university-detail/courses/{studentId}": {
+      "get": {
+        "tags": [
+          "university-controller"
+        ],
+        "summary": "getCourses",
+        "description": "This API is used fetch all course associated with particular user",
+        "operationId": "getCoursesUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "studentId",
+            "in": "path",
+            "description": "studentId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Course"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/university-detail/students/{instructorId}": {
+      "get": {
+        "tags": [
+          "university-controller"
+        ],
+        "summary": "getStudents",
+        "description": "This API is used to fetch all student of particular instructor",
+        "operationId": "getStudentsUsingGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "instructorId",
+            "in": "path",
+            "description": "instructorId",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/StudentResponse"
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/user/login": {
+      "post": {
+        "tags": [
+          "user-controller"
+        ],
+        "summary": "login",
+        "description": "This API is used to generate token based on user login detail",
+        "operationId": "loginUsingPOST",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "query",
+            "description": "user",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "description": "password",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/User"
+            }
+          },
+          "201": {
+            "description": "Created"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        },
+        "security": [
+          {
+            "JWT": [
+              "global"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "JWT": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "definitions": {
+    "Course": {
+      "type": "object",
+      "properties": {
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "instructor": {
+          "$ref": "#/definitions/Instructor"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CourseDTO": {
+      "type": "object",
+      "required": [
+        "departmentName",
+        "duration",
+        "instructorId",
+        "name"
+      ],
+      "properties": {
+        "departmentName": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Required only in case of update"
+        },
+        "instructorId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "CourseResponse": {
+      "type": "object",
+      "properties": {
+        "departmentName": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "instructorId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Department": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DepartmentDTO": {
+      "type": "object",
+      "required": [
+        "location",
+        "name"
+      ],
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "DepartmentResponse": {
+      "type": "object",
+      "properties": {
+        "location": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "Instructor": {
+      "type": "object",
+      "properties": {
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "headedBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "InstructorDTO": {
+      "type": "object",
+      "required": [
+        "departmentName",
+        "firstName",
+        "headedBy",
+        "lastName",
+        "phone"
+      ],
+      "properties": {
+        "departmentName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "headedBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Required only in case of update"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "InstructorResponse": {
+      "type": "object",
+      "properties": {
+        "departmentName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "headedBy": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "Message": {
+      "type": "object",
+      "required": [
+        "message"
+      ],
+      "properties": {
+        "message": {
+          "type": "string",
+          "description": "Response Message"
+        }
+      }
+    },
+    "StudentCourse": {
+      "type": "object",
+      "required": [
+        "courseId",
+        "studentId"
+      ],
+      "properties": {
+        "courseId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "studentId": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "StudentDTO": {
+      "type": "object",
+      "required": [
+        "firstName",
+        "lastName",
+        "phone"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Required only in case of update"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "StudentResponse": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "pwd": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        },
+        "user": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
